@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------- NOCTIS DESIGN TOKENS ---------- */
+@theme {
+  --color-noir: #0a0a0b;
+  --color-graphite: #121214;
+  --color-steel: #1c1c1f;
+  --color-line: #2a2a2e;
+  --color-smoke: #8b8b92;
+  --color-ivory: #edeae3;
+  --color-champagne: #c8a96a;
+  --color-champagne-soft: #e3cfa0;
+
+  --ease-cinema: cubic-bezier(0.22, 1, 0.36, 1);
+  --tracking-luxe: 0.35em;
 }
 
+/* Fonts are connected in layout.tsx */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ---------- BASE ---------- */
+html {
+  color-scheme: dark;
+  background-color: var(--color-noir);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-noir text-ivory font-sans antialiased;
+  min-height: 100dvh;
+}
+
+::selection {
+  background: var(--color-champagne);
+  color: var(--color-noir);
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ---------- CUSTOM UTILITIES ---------- */
+@utility eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: var(--tracking-luxe);
+  text-transform: uppercase;
+  color: var(--color-champagne);
+}
+
+@utility text-shine {
+  background: linear-gradient(
+    110deg,
+    var(--color-ivory) 35%,
+    var(--color-champagne-soft) 50%,
+    var(--color-ivory) 65%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 6s var(--ease-cinema) infinite;
+}
+
+@utility hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-champagne),
+    transparent
+  );
+}
+
+@keyframes shine {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+/* Film grain overlay */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Respect users who turn off motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

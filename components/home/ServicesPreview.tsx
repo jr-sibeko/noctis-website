@@ -51,12 +51,15 @@ export default function ServicesPreview() {
                   className="object-cover grayscale-[40%] transition-all duration-[1600ms] ease-cinema group-hover:scale-110 group-hover:grayscale-0"
                 />
 
-                {/* Dark fade so the text is readable */}
-                <div className="absolute inset-0 bg-linear-to-t from-noir via-noir/40 to-noir/10 transition-opacity duration-700 group-hover:opacity-80" />
+                {/* Dark fade at the top (keeps the number readable) */}
+                <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-noir/70 to-transparent" />
+
+                {/* Dark fade at the bottom (keeps the text readable) */}
+                <div className="absolute inset-0 bg-linear-to-t from-noir via-noir/40 to-transparent transition-opacity duration-700 group-hover:opacity-80" />
 
                 {/* Text */}
                 <div className="absolute inset-0 flex flex-col justify-between p-8">
-                  <span className="font-display text-lg text-champagne">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-champagne/60 bg-noir/60 font-display text-base text-champagne backdrop-blur-sm transition-colors duration-500 group-hover:bg-champagne group-hover:text-noir">
                     {service.number}
                   </span>
                   <div>

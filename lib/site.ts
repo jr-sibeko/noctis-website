@@ -4,11 +4,11 @@ export const site = {
   tagline: "Detailed in the dark. Revealed in the light.",
   description:
     "Premium mobile car detailing in South Africa. Paint correction, ceramic coating and interior restoration, delivered to your door.",
-  area: "Your Area, Province",
-  email: "you@example.com",
+  area: "Johannesburg, South Africa",
+  email: "info@noctisdetail.co.za",
   phoneDisplay: "+27 00 000 0000",
-  phoneLink: "+27000000000",
-  whatsapp: "27000000000", // country code + number, no +, no spaces, no leading 0
+  phoneLink: "+27693609119",
+  whatsapp: "27693609119", // country code + number, no +, no spaces, no leading 0
   instagram: "https://instagram.com/",
   hours: "Mon – Sat · 07:00 – 18:00",
 };

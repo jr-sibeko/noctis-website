@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 // ✏️ Update these before launch
 const lastUpdated = "26 November 2026";
-const informationOfficer = "Your full name"; // the person responsible for privacy at Noctis
+const informationOfficer = "Junior Sibeko"; // the person responsible for privacy at Noctis
 
 const sections = [
   {

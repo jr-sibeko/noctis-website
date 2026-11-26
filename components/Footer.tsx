@@ -76,8 +76,9 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* Bottom strip: everything on the left, so the WhatsApp button never covers it */}
       <div className="border-t border-line">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-6 text-xs text-smoke md:flex-row md:items-center md:justify-between lg:px-10">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 pb-28 pt-6 text-xs text-smoke md:flex-row md:items-center md:gap-10 md:pb-6 lg:px-10">
           <p>
             © <CurrentYear /> {site.fullName}. All rights reserved.
           </p>

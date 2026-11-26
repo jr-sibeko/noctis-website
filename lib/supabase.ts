@@ -20,3 +20,22 @@ export function getSupabase() {
     auth: { persistSession: false },
   });
 }
+
+// Loads approved reviews, newest first
+export async function getApprovedReviews(limit = 50): Promise<Review[]> {
+  const supabase = getSupabase();
+  if (!supabase) return [];
+
+  const { data, error } = await supabase
+    .from("reviews")
+    .select("id, created_at, name, vehicle, service, rating, comment")
+    .eq("approved", true)
+    .order("created_at", { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    console.error("Could not load reviews:", error);
+    return [];
+  }
+  return data ?? [];
+}

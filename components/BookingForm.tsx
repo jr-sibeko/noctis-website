@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { sendBooking, type BookingState } from "@/app/book/actions";
 import { services } from "@/lib/services";
@@ -47,6 +47,7 @@ export default function BookingForm({
     sendBooking,
     initialState,
   );
+  const [service, setService] = useState(defaultService); // remembers the chosen service
   const errors = state.errors ?? {};
   const v = state.values ?? {};
 
@@ -170,19 +171,16 @@ export default function BookingForm({
               <select
                 id="service"
                 name="service"
-                defaultValue={v.service ?? defaultService}
+                value={service}
+                onChange={(e) => setService(e.target.value)}
                 className={`${inputClass} cursor-pointer appearance-none`}
               >
-                <option value="" disabled className="bg-noir">
+                <option value="" className="bg-noir">
                   Choose a service
                 </option>
-                {services.map((service) => (
-                  <option
-                    key={service.slug}
-                    value={service.slug}
-                    className="bg-noir"
-                  >
-                    {service.name}
+                {services.map((s) => (
+                  <option key={s.slug} value={s.slug} className="bg-noir">
+                    {s.name}
                   </option>
                 ))}
                 <option value="membership" className="bg-noir">
